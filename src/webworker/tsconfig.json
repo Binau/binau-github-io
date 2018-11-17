@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./webworker",
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "types": [],
+    "lib": [
+      "es2018",
+      "webworker"
+    ]
+  },
+  "files": [
+    "src/worker1.ts"
+  ],
+  "exclude": [
+  ]
+}
