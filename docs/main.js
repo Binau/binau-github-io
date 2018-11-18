@@ -106,7 +106,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         if (window.Worker) {
-            var myWorker = new Worker("/worker1.js");
+            var myWorker = new Worker("/assets/worker1.js");
             myWorker.postMessage([5, 3]);
         }
     };

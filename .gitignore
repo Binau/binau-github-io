@@ -37,3 +37,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/src/webworker/dist/
+/src/assets/worker1.js
