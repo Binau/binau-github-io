@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if ((window as any).Worker) {
-      const myWorker = new Worker('assets/worker1.js');
+      const myWorker = new Worker('./assets/worker1.js');
       myWorker.postMessage([5, 3]);
     }
 

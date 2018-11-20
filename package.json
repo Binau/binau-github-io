@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --deploy-url /binau-github-io/ --base-href /binau-github-io/",
     "build": "ng build --deploy-url /binau-github-io/ --base-href /binau-github-io/" ,
     "build-worker1": "tsc -p webworker/tsconfig.json && webpack --config webworker/webpack.config.js",
     "test": "ng test",
