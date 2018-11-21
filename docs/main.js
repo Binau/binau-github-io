@@ -35,6 +35,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _component_page_accueil_accueil_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./component/page/accueil/accueil.component */ "./src/app/component/page/accueil/accueil.component.ts");
+/* harmony import */ var _component_page_multi_screen_multi_screen_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./component/page/multi-screen/multi-screen.component */ "./src/app/component/page/multi-screen/multi-screen.component.ts");
+/* harmony import */ var _component_page_web_worker_web_worker_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./component/page/web-worker/web-worker.component */ "./src/app/component/page/web-worker/web-worker.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,7 +46,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 
 
-var routes = [];
+
+
+
+var routes = [
+    { path: '', component: _component_page_accueil_accueil_component__WEBPACK_IMPORTED_MODULE_2__["AccueilComponent"] },
+    { path: 'multi-ecran', component: _component_page_multi_screen_multi_screen_component__WEBPACK_IMPORTED_MODULE_3__["MultiScreenComponent"] },
+    { path: 'web-worker', component: _component_page_web_worker_web_worker_component__WEBPACK_IMPORTED_MODULE_4__["WebWorkerComponent"] }
+];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
@@ -54,70 +64,6 @@ var AppRoutingModule = /** @class */ (function () {
         })
     ], AppRoutingModule);
     return AppRoutingModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/app.component.css":
-/*!***********************************!*\
-  !*** ./src/app/app.component.css ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/app.component.html":
-/*!************************************!*\
-  !*** ./src/app/app.component.html ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n    Welcome to {{ title }}!\r\n  </h1>\r\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\r\n</div>\r\n<h2>Here are some links to help you start: </h2>\r\n<ul>\r\n  <li>\r\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/tutorial\">Tour of Heroes</a></h2>\r\n  </li>\r\n  <li>\r\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://github.com/angular/angular-cli/wiki\">CLI Documentation</a></h2>\r\n  </li>\r\n  <li>\r\n    <h2><a target=\"_blank\" rel=\"noopener\" href=\"https://blog.angular.io/\">Angular blog</a></h2>\r\n  </li>\r\n</ul>\r\n\r\n<router-outlet></router-outlet>\r\n"
-
-/***/ }),
-
-/***/ "./src/app/app.component.ts":
-/*!**********************************!*\
-  !*** ./src/app/app.component.ts ***!
-  \**********************************/
-/*! exports provided: AppComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var AppComponent = /** @class */ (function () {
-    function AppComponent() {
-        this.title = 'binau-github-io';
-    }
-    AppComponent.prototype.ngOnInit = function () {
-        if (window.Worker) {
-            var myWorker = new Worker('./assets/worker1.js');
-            myWorker.postMessage([5, 3]);
-        }
-    };
-    AppComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-root',
-            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
-        })
-    ], AppComponent);
-    return AppComponent;
 }());
 
 
@@ -137,7 +83,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _component_page_app_app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./component/page/app/app.component */ "./src/app/component/page/app/app.component.ts");
+/* harmony import */ var _component_fragment_menu_menu_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./component/fragment/menu/menu.component */ "./src/app/component/fragment/menu/menu.component.ts");
+/* harmony import */ var _component_page_accueil_accueil_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./component/page/accueil/accueil.component */ "./src/app/component/page/accueil/accueil.component.ts");
+/* harmony import */ var _component_page_multi_screen_multi_screen_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./component/page/multi-screen/multi-screen.component */ "./src/app/component/page/multi-screen/multi-screen.component.ts");
+/* harmony import */ var _component_page_web_worker_web_worker_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./component/page/web-worker/web-worker.component */ "./src/app/component/page/web-worker/web-worker.component.ts");
+/* harmony import */ var _component_fragment_msg_panel_msg_panel_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./component/fragment/msg-panel/msg-panel.component */ "./src/app/component/fragment/msg-panel/msg-panel.component.ts");
+/* harmony import */ var _component_fragment_count_with_ww_count_with_ww_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./component/fragment/count-with-ww/count-with-ww.component */ "./src/app/component/fragment/count-with-ww/count-with-ww.component.ts");
+/* harmony import */ var _component_fragment_count_no_ww_count_no_ww_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./component/fragment/count-no-ww/count-no-ww.component */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -148,23 +101,606 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]
+                // Components
+                _component_fragment_menu_menu_component__WEBPACK_IMPORTED_MODULE_4__["MenuComponent"],
+                // Pages
+                _component_page_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+                _component_page_accueil_accueil_component__WEBPACK_IMPORTED_MODULE_5__["AccueilComponent"],
+                _component_page_multi_screen_multi_screen_component__WEBPACK_IMPORTED_MODULE_6__["MultiScreenComponent"],
+                _component_page_web_worker_web_worker_component__WEBPACK_IMPORTED_MODULE_7__["WebWorkerComponent"],
+                _component_fragment_msg_panel_msg_panel_component__WEBPACK_IMPORTED_MODULE_8__["MsgPanelComponent"],
+                _component_fragment_count_with_ww_count_with_ww_component__WEBPACK_IMPORTED_MODULE_9__["CountWithWwComponent"],
+                _component_fragment_count_no_ww_count_no_ww_component__WEBPACK_IMPORTED_MODULE_10__["CountNoWwComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+            bootstrap: [_component_page_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/count-no-ww/count-no-ww.component.css":
+/*!**************************************************************************!*\
+  !*** ./src/app/component/fragment/count-no-ww/count-no-ww.component.css ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9mcmFnbWVudC9jb3VudC1uby13dy9jb3VudC1uby13dy5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/count-no-ww/count-no-ww.component.html":
+/*!***************************************************************************!*\
+  !*** ./src/app/component/fragment/count-no-ww/count-no-ww.component.html ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div>\n  Sans Web Worker\n  <button (click)='startWebWorker()' type='button'>Start</button>\n  <button (click)='stopWebWorker()' type='button'>Stop</button>\n  <span>{{currentNb}}</span>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/count-no-ww/count-no-ww.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/component/fragment/count-no-ww/count-no-ww.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: CountNoWwComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CountNoWwComponent", function() { return CountNoWwComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CountNoWwComponent = /** @class */ (function () {
+    function CountNoWwComponent() {
+        this.currentNb = 0;
+        this.countNb = 0;
+    }
+    CountNoWwComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setInterval(function () {
+            _this.currentNb = _this.countNb;
+        }, 500);
+    };
+    CountNoWwComponent.prototype.startWebWorker = function () {
+        if (this.currentImmediate)
+            this.stopWebWorker();
+        this.doCount();
+    };
+    CountNoWwComponent.prototype.stopWebWorker = function () {
+        clearTimeout(this.currentImmediate);
+        this.currentImmediate = null;
+    };
+    CountNoWwComponent.prototype.doCount = function () {
+        console.log('.');
+        this.countNb++;
+        this.currentImmediate = setTimeout(this.doCount.bind(this), 0);
+    };
+    CountNoWwComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-count-no-ww',
+            template: __webpack_require__(/*! ./count-no-ww.component.html */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.html"),
+            styles: [__webpack_require__(/*! ./count-no-ww.component.css */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CountNoWwComponent);
+    return CountNoWwComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/count-with-ww/count-with-ww.component.css":
+/*!******************************************************************************!*\
+  !*** ./src/app/component/fragment/count-with-ww/count-with-ww.component.css ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9mcmFnbWVudC9jb3VudC13aXRoLXd3L2NvdW50LXdpdGgtd3cuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/count-with-ww/count-with-ww.component.html":
+/*!*******************************************************************************!*\
+  !*** ./src/app/component/fragment/count-with-ww/count-with-ww.component.html ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div>\n  <button (click)='startWebWorker()' type='button'>Start</button>\n  <button (click)='stopWebWorker()' type='button'>Stop</button>\n  <span>{{currentNb}}</span>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/count-with-ww/count-with-ww.component.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/app/component/fragment/count-with-ww/count-with-ww.component.ts ***!
+  \*****************************************************************************/
+/*! exports provided: CountWithWwComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CountWithWwComponent", function() { return CountWithWwComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CountWithWwComponent = /** @class */ (function () {
+    function CountWithWwComponent() {
+        this.currentNb = 0;
+    }
+    CountWithWwComponent.prototype.ngOnInit = function () {
+        // Chargement du worker
+        this.myWorker = new Worker('./assets/worker1.js');
+        this.myWorker.onmessage = this.onWorker1Message.bind(this);
+    };
+    CountWithWwComponent.prototype.ngOnDestroy = function () {
+        if (this.myWorker)
+            this.myWorker.terminate();
+    };
+    CountWithWwComponent.prototype.startWebWorker = function () {
+        this.postWorker1({
+            start: true
+        });
+    };
+    CountWithWwComponent.prototype.stopWebWorker = function () {
+        this.postWorker1({
+            stop: true
+        });
+    };
+    CountWithWwComponent.prototype.postWorker1 = function (bean) {
+        this.myWorker.postMessage(bean);
+    };
+    CountWithWwComponent.prototype.onWorker1Message = function (event) {
+        //
+        var data = event.data;
+        this.currentNb = data.currentNb;
+    };
+    CountWithWwComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-count-with-ww',
+            template: __webpack_require__(/*! ./count-with-ww.component.html */ "./src/app/component/fragment/count-with-ww/count-with-ww.component.html"),
+            styles: [__webpack_require__(/*! ./count-with-ww.component.css */ "./src/app/component/fragment/count-with-ww/count-with-ww.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CountWithWwComponent);
+    return CountWithWwComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/menu/menu.component.css":
+/*!************************************************************!*\
+  !*** ./src/app/component/fragment/menu/menu.component.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n.wrapper {\r\n\r\n}\r\n\r\n.nav {\r\n  display: block;\r\n  background-color: aliceblue;\r\n}\r\n\r\n.nav-logo {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n\r\n  padding: 0 20px;\r\n}\r\n\r\n.nav-logo-img {\r\n  width: 50px;\r\n  height: 50px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.nav-item {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n\r\n  padding: 10px 30px 10px 30px;\r\n  cursor: pointer;\r\n}\r\n\r\n.nav-item:hover {\r\n  -webkit-filter: opacity(50%);\r\n          filter: opacity(50%);\r\n  color: aliceblue;\r\n  background-color: black;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L2ZyYWdtZW50L21lbnUvbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTs7Q0FFQzs7QUFFRDtFQUNFLGVBQWU7RUFDZiw0QkFBNEI7Q0FDN0I7O0FBRUQ7RUFDRSxzQkFBc0I7RUFDdEIsdUJBQXVCOztFQUV2QixnQkFBZ0I7Q0FDakI7O0FBRUQ7RUFDRSxZQUFZO0VBQ1osYUFBYTs7RUFFYixnQkFBZ0I7Q0FDakI7O0FBRUQ7RUFDRSxzQkFBc0I7RUFDdEIsdUJBQXVCOztFQUV2Qiw2QkFBNkI7RUFDN0IsZ0JBQWdCO0NBQ2pCOztBQUVEO0VBQ0UsNkJBQXFCO1VBQXJCLHFCQUFxQjtFQUNyQixpQkFBaUI7RUFDakIsd0JBQXdCO0NBQ3pCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50L2ZyYWdtZW50L21lbnUvbWVudS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi53cmFwcGVyIHtcclxuXHJcbn1cclxuXHJcbi5uYXYge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGFsaWNlYmx1ZTtcclxufVxyXG5cclxuLm5hdi1sb2dvIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuXHJcbiAgcGFkZGluZzogMCAyMHB4O1xyXG59XHJcblxyXG4ubmF2LWxvZ28taW1nIHtcclxuICB3aWR0aDogNTBweDtcclxuICBoZWlnaHQ6IDUwcHg7XHJcblxyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLm5hdi1pdGVtIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuXHJcbiAgcGFkZGluZzogMTBweCAzMHB4IDEwcHggMzBweDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5uYXYtaXRlbTpob3ZlciB7XHJcbiAgZmlsdGVyOiBvcGFjaXR5KDUwJSk7XHJcbiAgY29sb3I6IGFsaWNlYmx1ZTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjaztcclxufVxyXG5cclxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/menu/menu.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/component/fragment/menu/menu.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class='nav'>\n  <a class='nav-logo' (click)='onClickLogo()'>\n    <img class='nav-logo-img' alt='logo' src='./assets/logo.png'/>\n  </a>\n  <a\n    (click)='onClickAccueil()'\n    class='nav-item'>Accueil</a>\n  <a\n    (click)='onClickMultiScreen()'\n    class='nav-item'>Multi-Ecran</a>\n  <a\n    (click)='onCLickWebWorker()'\n    class='nav-item'>Web Worker</a>\n</nav>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/menu/menu.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/component/fragment/menu/menu.component.ts ***!
+  \***********************************************************/
+/*! exports provided: MenuComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuComponent", function() { return MenuComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MenuComponent = /** @class */ (function () {
+    function MenuComponent(router) {
+        this.router = router;
+    }
+    MenuComponent.prototype.ngOnInit = function () {
+    };
+    MenuComponent.prototype.onClickLogo = function () {
+        this.router.navigate(['']);
+    };
+    MenuComponent.prototype.onClickAccueil = function () {
+        this.router.navigate(['']);
+    };
+    MenuComponent.prototype.onClickMultiScreen = function () {
+        this.router.navigate(['/multi-ecran']);
+    };
+    MenuComponent.prototype.onCLickWebWorker = function () {
+        this.router.navigate(['/web-worker']);
+    };
+    MenuComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-menu',
+            template: __webpack_require__(/*! ./menu.component.html */ "./src/app/component/fragment/menu/menu.component.html"),
+            styles: [__webpack_require__(/*! ./menu.component.css */ "./src/app/component/fragment/menu/menu.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], MenuComponent);
+    return MenuComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/msg-panel/msg-panel.component.css":
+/*!**********************************************************************!*\
+  !*** ./src/app/component/fragment/msg-panel/msg-panel.component.css ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n.wrapper {\r\n\r\n  background-color: lightcoral;\r\n\r\n  border-top: solid 1px red;\r\n  border-bottom: solid 1px red;\r\n\r\n  padding: 15px 10px;\r\n\r\n\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L2ZyYWdtZW50L21zZy1wYW5lbC9tc2ctcGFuZWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7O0VBRUUsNkJBQTZCOztFQUU3QiwwQkFBMEI7RUFDMUIsNkJBQTZCOztFQUU3QixtQkFBbUI7OztDQUdwQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9mcmFnbWVudC9tc2ctcGFuZWwvbXNnLXBhbmVsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLndyYXBwZXIge1xyXG5cclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGNvcmFsO1xyXG5cclxuICBib3JkZXItdG9wOiBzb2xpZCAxcHggcmVkO1xyXG4gIGJvcmRlci1ib3R0b206IHNvbGlkIDFweCByZWQ7XHJcblxyXG4gIHBhZGRpbmc6IDE1cHggMTBweDtcclxuXHJcblxyXG59XHJcbiJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/msg-panel/msg-panel.component.html":
+/*!***********************************************************************!*\
+  !*** ./src/app/component/fragment/msg-panel/msg-panel.component.html ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p class='wrapper'>\n  <ng-content></ng-content>\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/msg-panel/msg-panel.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/component/fragment/msg-panel/msg-panel.component.ts ***!
+  \*********************************************************************/
+/*! exports provided: MsgPanelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgPanelComponent", function() { return MsgPanelComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MsgPanelComponent = /** @class */ (function () {
+    function MsgPanelComponent() {
+    }
+    MsgPanelComponent.prototype.ngOnInit = function () {
+    };
+    MsgPanelComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-msg-panel',
+            template: __webpack_require__(/*! ./msg-panel.component.html */ "./src/app/component/fragment/msg-panel/msg-panel.component.html"),
+            styles: [__webpack_require__(/*! ./msg-panel.component.css */ "./src/app/component/fragment/msg-panel/msg-panel.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], MsgPanelComponent);
+    return MsgPanelComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/page/accueil/accueil.component.css":
+/*!**************************************************************!*\
+  !*** ./src/app/component/page/accueil/accueil.component.css ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9wYWdlL2FjY3VlaWwvYWNjdWVpbC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/component/page/accueil/accueil.component.html":
+/*!***************************************************************!*\
+  !*** ./src/app/component/page/accueil/accueil.component.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  accueil works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/page/accueil/accueil.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/component/page/accueil/accueil.component.ts ***!
+  \*************************************************************/
+/*! exports provided: AccueilComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccueilComponent", function() { return AccueilComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AccueilComponent = /** @class */ (function () {
+    function AccueilComponent() {
+    }
+    AccueilComponent.prototype.ngOnInit = function () {
+    };
+    AccueilComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-accueil',
+            template: __webpack_require__(/*! ./accueil.component.html */ "./src/app/component/page/accueil/accueil.component.html"),
+            styles: [__webpack_require__(/*! ./accueil.component.css */ "./src/app/component/page/accueil/accueil.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AccueilComponent);
+    return AccueilComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/page/app/app.component.css":
+/*!******************************************************!*\
+  !*** ./src/app/component/page/app/app.component.css ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n.content {\r\n  padding: 10px 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2UvYXBwL2FwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLG1CQUFtQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9wYWdlL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uY29udGVudCB7XHJcbiAgcGFkZGluZzogMTBweCA1MHB4O1xyXG59XHJcbiJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/component/page/app/app.component.html":
+/*!*******************************************************!*\
+  !*** ./src/app/component/page/app/app.component.html ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-menu></app-menu>\r\n<div class='content'>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/component/page/app/app.component.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/component/page/app/app.component.ts ***!
+  \*****************************************************/
+/*! exports provided: AppComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var AppComponent = /** @class */ (function () {
+    function AppComponent() {
+        this.title = 'binau-github-io';
+    }
+    AppComponent.prototype.ngOnInit = function () {
+    };
+    AppComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-root',
+            template: __webpack_require__(/*! ./app.component.html */ "./src/app/component/page/app/app.component.html"),
+            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/component/page/app/app.component.css")]
+        })
+    ], AppComponent);
+    return AppComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/page/multi-screen/multi-screen.component.css":
+/*!************************************************************************!*\
+  !*** ./src/app/component/page/multi-screen/multi-screen.component.css ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9wYWdlL211bHRpLXNjcmVlbi9tdWx0aS1zY3JlZW4uY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/component/page/multi-screen/multi-screen.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/component/page/multi-screen/multi-screen.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  multi-screen works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/page/multi-screen/multi-screen.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/component/page/multi-screen/multi-screen.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: MultiScreenComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiScreenComponent", function() { return MultiScreenComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MultiScreenComponent = /** @class */ (function () {
+    function MultiScreenComponent() {
+    }
+    MultiScreenComponent.prototype.ngOnInit = function () {
+    };
+    MultiScreenComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-multi-screen',
+            template: __webpack_require__(/*! ./multi-screen.component.html */ "./src/app/component/page/multi-screen/multi-screen.component.html"),
+            styles: [__webpack_require__(/*! ./multi-screen.component.css */ "./src/app/component/page/multi-screen/multi-screen.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], MultiScreenComponent);
+    return MultiScreenComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/page/web-worker/web-worker.component.css":
+/*!********************************************************************!*\
+  !*** ./src/app/component/page/web-worker/web-worker.component.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n\r\n\r\n\r\n.link {\r\n\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUlBOztDQUVDIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuXHJcblxyXG5cclxuLmxpbmsge1xyXG5cclxufVxyXG4iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/component/page/web-worker/web-worker.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/component/page/web-worker/web-worker.component.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n\n  <!--\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n-->\n\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/component/page/web-worker/web-worker.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/component/page/web-worker/web-worker.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: WebWorkerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebWorkerComponent", function() { return WebWorkerComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var WebWorkerComponent = /** @class */ (function () {
+    function WebWorkerComponent() {
+        this.currentNb = 0;
+    }
+    WebWorkerComponent.prototype.ngOnInit = function () {
+        // Verification compatibilité
+        if (!window.Worker) {
+            return this.erreur = 'Votre version de navigateur est obsolete et ne peut pas utilier les web workers. Veuillez telecharger une version de navigateur à jour.';
+        }
+    };
+    WebWorkerComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-web-worker',
+            template: __webpack_require__(/*! ./web-worker.component.html */ "./src/app/component/page/web-worker/web-worker.component.html"),
+            styles: [__webpack_require__(/*! ./web-worker.component.css */ "./src/app/component/page/web-worker/web-worker.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], WebWorkerComponent);
+    return WebWorkerComponent;
 }());
 
 

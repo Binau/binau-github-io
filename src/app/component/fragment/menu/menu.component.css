@@ -1,0 +1,38 @@
+
+.wrapper {
+
+}
+
+.nav {
+  display: block;
+  background-color: aliceblue;
+}
+
+.nav-logo {
+  display: inline-block;
+  vertical-align: middle;
+
+  padding: 0 20px;
+}
+
+.nav-logo-img {
+  width: 50px;
+  height: 50px;
+
+  cursor: pointer;
+}
+
+.nav-item {
+  display: inline-block;
+  vertical-align: middle;
+
+  padding: 10px 30px 10px 30px;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  filter: opacity(50%);
+  color: aliceblue;
+  background-color: black;
+}
+

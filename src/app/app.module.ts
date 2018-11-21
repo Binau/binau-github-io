@@ -1,12 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './component/page/app/app.component';
+import {MenuComponent} from './component/fragment/menu/menu.component';
+import {AccueilComponent} from './component/page/accueil/accueil.component';
+import { MultiScreenComponent } from './component/page/multi-screen/multi-screen.component';
+import { WebWorkerComponent } from './component/page/web-worker/web-worker.component';
+import { MsgPanelComponent } from './component/fragment/msg-panel/msg-panel.component';
+import { CountWithWwComponent } from './component/fragment/count-with-ww/count-with-ww.component';
+import { CountNoWwComponent } from './component/fragment/count-no-ww/count-no-ww.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    // Components
+    MenuComponent,
+    // Pages
+    AppComponent,
+    AccueilComponent,
+    MultiScreenComponent,
+    WebWorkerComponent,
+    MsgPanelComponent,
+    CountWithWwComponent,
+    CountNoWwComponent
   ],
   imports: [
     BrowserModule,
@@ -15,4 +31,5 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
