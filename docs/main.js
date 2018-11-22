@@ -165,7 +165,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div>\n  Sans Web Worker\n  <button (click)='startWebWorker()' type='button'>Start</button>\n  <button (click)='stopWebWorker()' type='button'>Stop</button>\n  <span>{{currentNb}}</span>\n</div>\n"
+module.exports = "  <span>{{currentNb}}</span>\n"
 
 /***/ }),
 
@@ -180,6 +180,7 @@ module.exports = "\n<div>\n  Sans Web Worker\n  <button (click)='startWebWorker(
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CountNoWwComponent", function() { return CountNoWwComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_web_worker_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../service/web-worker.service */ "./src/app/service/web-worker.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -190,8 +191,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CountNoWwComponent = /** @class */ (function () {
-    function CountNoWwComponent() {
+    function CountNoWwComponent(webWorkerService) {
+        this.webWorkerService = webWorkerService;
         this.currentNb = 0;
         this.countNb = 0;
     }
@@ -199,7 +202,10 @@ var CountNoWwComponent = /** @class */ (function () {
         var _this = this;
         setInterval(function () {
             _this.currentNb = _this.countNb;
-        }, 500);
+        }, 100);
+        // Abonnement aux evenements
+        this.webWorkerService.startEvent.subscribe(function () { return _this.startWebWorker(); });
+        this.webWorkerService.stopEvent.subscribe(function () { return _this.stopWebWorker(); });
     };
     CountNoWwComponent.prototype.startWebWorker = function () {
         if (this.currentImmediate)
@@ -221,7 +227,7 @@ var CountNoWwComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./count-no-ww.component.html */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.html"),
             styles: [__webpack_require__(/*! ./count-no-ww.component.css */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_service_web_worker_service__WEBPACK_IMPORTED_MODULE_1__["WebWorkerService"]])
     ], CountNoWwComponent);
     return CountNoWwComponent;
 }());
@@ -660,7 +666,7 @@ var MultiScreenComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n\r\n\r\n\r\n.link {\r\n\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUlBOztDQUVDIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuXHJcblxyXG5cclxuLmxpbmsge1xyXG5cclxufVxyXG4iXX0= */"
+module.exports = "\r\n.start-wrapper {\r\n\r\n}\r\n\r\n.start-btn {\r\n  padding: 10px 20px;\r\n}\r\n\r\n.stop-btn {\r\n  padding: 10px 20px;\r\n}\r\n\r\n.start-lbl {\r\n\r\n}\r\n\r\n.start-input {\r\n  padding: 10px;\r\n}\r\n\r\n.count-ww-wrapper {\r\n  display: inline-block;\r\n  margin: 20px 0 0 0;\r\n  border: 2px grey solid;\r\n}\r\n\r\n.count-ww-label {\r\n  padding: 20px;\r\n  background-color: rgb(22.35%, 52.94%, 87.45%);\r\n  border-bottom: 2px grey solid;\r\n}\r\n\r\n.count-ww {\r\n  display: block;\r\n  text-align: center;\r\n  padding: 10px;\r\n  background-color: rgb(51.37%, 81.57%, 94.90%);\r\n}\r\n\r\n.count-nw-wrapper {\r\n  display: inline-block;\r\n  margin: 20px 0 0 20px;\r\n  border: 2px grey solid;\r\n}\r\n\r\n.count-nw-label {\r\n  padding: 20px;\r\n  background-color: rgb(22.35%, 52.94%, 87.45%);\r\n  border-bottom: 2px grey solid;\r\n}\r\n\r\n.count-nw {\r\n  display: block;\r\n  text-align: center;\r\n  padding: 10px;\r\n  background-color: rgb(51.37%, 81.57%, 94.90%);\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBOztDQUVDOztBQUVEO0VBQ0UsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsbUJBQW1CO0NBQ3BCOztBQUVEOztDQUVDOztBQUVEO0VBQ0UsY0FBYztDQUNmOztBQUdEO0VBQ0Usc0JBQXNCO0VBQ3RCLG1CQUFtQjtFQUNuQix1QkFBdUI7Q0FDeEI7O0FBRUQ7RUFDRSxjQUFjO0VBQ2QsOENBQThDO0VBQzlDLDhCQUE4QjtDQUMvQjs7QUFFRDtFQUNFLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsY0FBYztFQUNkLDhDQUE4QztDQUMvQzs7QUFFRDtFQUNFLHNCQUFzQjtFQUN0QixzQkFBc0I7RUFDdEIsdUJBQXVCO0NBQ3hCOztBQUVEO0VBQ0UsY0FBYztFQUNkLDhDQUE4QztFQUM5Qyw4QkFBOEI7Q0FDL0I7O0FBRUQ7RUFDRSxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLGNBQWM7RUFDZCw4Q0FBOEM7Q0FDL0MiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnQvcGFnZS93ZWItd29ya2VyL3dlYi13b3JrZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uc3RhcnQtd3JhcHBlciB7XHJcblxyXG59XHJcblxyXG4uc3RhcnQtYnRuIHtcclxuICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbn1cclxuXHJcbi5zdG9wLWJ0biB7XHJcbiAgcGFkZGluZzogMTBweCAyMHB4O1xyXG59XHJcblxyXG4uc3RhcnQtbGJsIHtcclxuXHJcbn1cclxuXHJcbi5zdGFydC1pbnB1dCB7XHJcbiAgcGFkZGluZzogMTBweDtcclxufVxyXG5cclxuXHJcbi5jb3VudC13dy13cmFwcGVyIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgbWFyZ2luOiAyMHB4IDAgMCAwO1xyXG4gIGJvcmRlcjogMnB4IGdyZXkgc29saWQ7XHJcbn1cclxuXHJcbi5jb3VudC13dy1sYWJlbCB7XHJcbiAgcGFkZGluZzogMjBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjIuMzUlLCA1Mi45NCUsIDg3LjQ1JSk7XHJcbiAgYm9yZGVyLWJvdHRvbTogMnB4IGdyZXkgc29saWQ7XHJcbn1cclxuXHJcbi5jb3VudC13dyB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIHBhZGRpbmc6IDEwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDUxLjM3JSwgODEuNTclLCA5NC45MCUpO1xyXG59XHJcblxyXG4uY291bnQtbnctd3JhcHBlciB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIG1hcmdpbjogMjBweCAwIDAgMjBweDtcclxuICBib3JkZXI6IDJweCBncmV5IHNvbGlkO1xyXG59XHJcblxyXG4uY291bnQtbnctbGFiZWwge1xyXG4gIHBhZGRpbmc6IDIwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyLjM1JSwgNTIuOTQlLCA4Ny40NSUpO1xyXG4gIGJvcmRlci1ib3R0b206IDJweCBncmV5IHNvbGlkO1xyXG59XHJcblxyXG4uY291bnQtbncge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYig1MS4zNyUsIDgxLjU3JSwgOTQuOTAlKTtcclxufVxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -671,7 +677,7 @@ module.exports = "\r\n\r\n\r\n\r\n.link {\r\n\r\n}\r\n\r\n/*# sourceMappingURL=d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n\n  <button *ngIf='!started'\n          (click)='start()' type='button'>\n    Start\n  </button>\n  <button *ngIf='started'\n          (click)='stop()' type='button'>\n    Stop\n  </button>\n\n  <label>\n    <input type='number' [(ngModel)]='nbCount'/>\n  </label>\n\n  <app-count-with-ww *ngFor='let loop of loopCount'></app-count-with-ww>\n\n  <!--\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n-->\n\n</div>\n\n"
+module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n<div class='start-wrapper'>\n  <button  class='start-btn' *ngIf='!started'\n          (click)='start()' type='button'>\n    Start\n  </button>\n  <button class='stop-btn' *ngIf='started'\n          (click)='stop()' type='button'>\n    Stop\n  </button>\n\n  <label class='start-lbl' >\n    <input class='start-input'  type='number' [(ngModel)]='nbCount'/>\n  </label>\n</div>\n\n  <div class='count-ww-wrapper'>\n    <div class='count-ww-label'>Avec webworker</div>\n    <app-count-with-ww *ngFor='let loop of loopCount'\n                       class='count-ww'\n    ></app-count-with-ww>\n  </div>\n\n  <div class='count-nw-wrapper'>\n    <div class='count-nw-label'>Sans webworker</div>\n    <app-count-no-ww *ngFor='let loop of loopCount'\n                     class='count-nw'\n    ></app-count-no-ww>\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
@@ -703,7 +709,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var WebWorkerComponent = /** @class */ (function () {
     function WebWorkerComponent(webWorkerService) {
         this.webWorkerService = webWorkerService;
-        this.nbCount = 0;
+        this.nbCount = 20;
         this.started = false;
     }
     Object.defineProperty(WebWorkerComponent.prototype, "loopCount", {
