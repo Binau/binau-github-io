@@ -30,6 +30,7 @@ export class CountNoWwComponent implements OnInit {
 
   private startWebWorker() {
     if (this.currentImmediate) this.stopWebWorker();
+    this.countNb = 0;
     this.doCount();
   }
 

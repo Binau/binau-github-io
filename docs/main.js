@@ -210,6 +210,7 @@ var CountNoWwComponent = /** @class */ (function () {
     CountNoWwComponent.prototype.startWebWorker = function () {
         if (this.currentImmediate)
             this.stopWebWorker();
+        this.countNb = 0;
         this.doCount();
     };
     CountNoWwComponent.prototype.stopWebWorker = function () {

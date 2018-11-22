@@ -5,6 +5,7 @@ export class Calc {
 
   public start() {
     if (this.currentImmediate) this.stop();
+    this.countNb = 0;
     this.doCount();
   }
 
