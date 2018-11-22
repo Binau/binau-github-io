@@ -1,6 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {Worker1InApi} from '../../../../../webworker/api/worker1-in.api';
 import {Worker1OutApi} from '../../../../../webworker/api/worker1-out.api';
+import {ArrayUtils} from '../../../tools/array.utils';
+import {WebWorkerService} from '../../../service/web-worker.service';
 
 @Component({
   selector: 'app-web-worker',
@@ -10,11 +12,16 @@ import {Worker1OutApi} from '../../../../../webworker/api/worker1-out.api';
 export class WebWorkerComponent implements OnInit {
 
   public erreur: string;
-  public currentNb = 0;
+  public nbCount = 20;
+  public started = false;
 
-  private myWorker: Worker;
 
-  constructor() {
+  public get loopCount(): number[] {
+    return ArrayUtils.arrayFor(this.nbCount);
+  }
+
+  constructor(
+    private webWorkerService: WebWorkerService,) {
   }
 
   public ngOnInit() {
@@ -24,5 +31,15 @@ export class WebWorkerComponent implements OnInit {
     }
 
   }
+
+  public start(): void {
+    this.started = true;
+    this.webWorkerService.startEvent.emit();
+  }
+  public stop(): void {
+    this.webWorkerService.stopEvent.emit();
+    this.started = false;
+  }
+
 
 }

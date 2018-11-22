@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Worker1OutApi} from '../../../../../webworker/api/worker1-out.api';
+import {WebWorkerService} from '../../../service/web-worker.service';
 
 @Component({
   selector: 'app-count-no-ww',
@@ -12,15 +13,19 @@ export class CountNoWwComponent implements OnInit {
   public countNb = 0;
   private currentImmediate;
 
-  constructor() {
+  constructor(
+    private webWorkerService: WebWorkerService,) {
   }
 
   public ngOnInit() {
 
     setInterval(() => {
       this.currentNb = this.countNb;
-    }, 500);
+    }, 100);
 
+    // Abonnement aux evenements
+    this.webWorkerService.startEvent.subscribe(() => this.startWebWorker());
+    this.webWorkerService.stopEvent.subscribe(() => this.stopWebWorker());
   }
 
   private startWebWorker() {

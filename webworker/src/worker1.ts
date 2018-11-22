@@ -22,6 +22,6 @@ setInterval(() => {
   };
 
   postMessage(out);
-}, 500);
+}, 100);
 
 

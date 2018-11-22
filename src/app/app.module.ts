@@ -10,6 +10,9 @@ import { WebWorkerComponent } from './component/page/web-worker/web-worker.compo
 import { MsgPanelComponent } from './component/fragment/msg-panel/msg-panel.component';
 import { CountWithWwComponent } from './component/fragment/count-with-ww/count-with-ww.component';
 import { CountNoWwComponent } from './component/fragment/count-no-ww/count-no-ww.component';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {WebWorkerService} from './service/web-worker.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,12 @@ import { CountNoWwComponent } from './component/fragment/count-no-ww/count-no-ww
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    WebWorkerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

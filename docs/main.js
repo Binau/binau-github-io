@@ -91,12 +91,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_fragment_msg_panel_msg_panel_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./component/fragment/msg-panel/msg-panel.component */ "./src/app/component/fragment/msg-panel/msg-panel.component.ts");
 /* harmony import */ var _component_fragment_count_with_ww_count_with_ww_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./component/fragment/count-with-ww/count-with-ww.component */ "./src/app/component/fragment/count-with-ww/count-with-ww.component.ts");
 /* harmony import */ var _component_fragment_count_no_ww_count_no_ww_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./component/fragment/count-no-ww/count-no-ww.component */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _service_web_worker_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./service/web-worker.service */ "./src/app/service/web-worker.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -127,9 +131,12 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
             ],
-            providers: [],
+            providers: [
+                _service_web_worker_service__WEBPACK_IMPORTED_MODULE_12__["WebWorkerService"]
+            ],
             bootstrap: [_component_page_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
     ], AppModule);
@@ -241,7 +248,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div>\n  <button (click)='startWebWorker()' type='button'>Start</button>\n  <button (click)='stopWebWorker()' type='button'>Stop</button>\n  <span>{{currentNb}}</span>\n</div>\n"
+module.exports = "\n<span>{{currentNb}}</span>\n"
 
 /***/ }),
 
@@ -256,6 +263,7 @@ module.exports = "\n<div>\n  <button (click)='startWebWorker()' type='button'>St
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CountWithWwComponent", function() { return CountWithWwComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_web_worker_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../service/web-worker.service */ "./src/app/service/web-worker.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -266,14 +274,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CountWithWwComponent = /** @class */ (function () {
-    function CountWithWwComponent() {
+    function CountWithWwComponent(webWorkerService) {
+        this.webWorkerService = webWorkerService;
         this.currentNb = 0;
     }
     CountWithWwComponent.prototype.ngOnInit = function () {
+        var _this = this;
         // Chargement du worker
         this.myWorker = new Worker('./assets/worker1.js');
         this.myWorker.onmessage = this.onWorker1Message.bind(this);
+        // Abonnement aux evenements
+        this.webWorkerService.startEvent.subscribe(function () { return _this.startWebWorker(); });
+        this.webWorkerService.stopEvent.subscribe(function () { return _this.stopWebWorker(); });
     };
     CountWithWwComponent.prototype.ngOnDestroy = function () {
         if (this.myWorker)
@@ -303,7 +317,7 @@ var CountWithWwComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./count-with-ww.component.html */ "./src/app/component/fragment/count-with-ww/count-with-ww.component.html"),
             styles: [__webpack_require__(/*! ./count-with-ww.component.css */ "./src/app/component/fragment/count-with-ww/count-with-ww.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_service_web_worker_service__WEBPACK_IMPORTED_MODULE_1__["WebWorkerService"]])
     ], CountWithWwComponent);
     return CountWithWwComponent;
 }());
@@ -657,7 +671,7 @@ module.exports = "\r\n\r\n\r\n\r\n.link {\r\n\r\n}\r\n\r\n/*# sourceMappingURL=d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n  <app-count-with-ww></app-count-with-ww>\n\n  <!--\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n-->\n\n</div>\n\n"
+module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n\n  <button *ngIf='!started'\n          (click)='start()' type='button'>\n    Start\n  </button>\n  <button *ngIf='started'\n          (click)='stop()' type='button'>\n    Stop\n  </button>\n\n  <label>\n    <input type='number' [(ngModel)]='nbCount'/>\n  </label>\n\n  <app-count-with-ww *ngFor='let loop of loopCount'></app-count-with-ww>\n\n  <!--\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n  <app-count-no-ww></app-count-no-ww>\n-->\n\n</div>\n\n"
 
 /***/ }),
 
@@ -672,6 +686,8 @@ module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne so
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebWorkerComponent", function() { return WebWorkerComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _tools_array_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../tools/array.utils */ "./src/app/tools/array.utils.ts");
+/* harmony import */ var _service_web_worker_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/web-worker.service */ "./src/app/service/web-worker.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -682,15 +698,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var WebWorkerComponent = /** @class */ (function () {
-    function WebWorkerComponent() {
-        this.currentNb = 0;
+    function WebWorkerComponent(webWorkerService) {
+        this.webWorkerService = webWorkerService;
+        this.nbCount = 0;
+        this.started = false;
     }
+    Object.defineProperty(WebWorkerComponent.prototype, "loopCount", {
+        get: function () {
+            return _tools_array_utils__WEBPACK_IMPORTED_MODULE_1__["ArrayUtils"].arrayFor(this.nbCount);
+        },
+        enumerable: true,
+        configurable: true
+    });
     WebWorkerComponent.prototype.ngOnInit = function () {
         // Verification compatibilité
         if (!window.Worker) {
             return this.erreur = 'Votre version de navigateur est obsolete et ne peut pas utilier les web workers. Veuillez telecharger une version de navigateur à jour.';
         }
+    };
+    WebWorkerComponent.prototype.start = function () {
+        this.started = true;
+        this.webWorkerService.startEvent.emit();
+    };
+    WebWorkerComponent.prototype.stop = function () {
+        this.webWorkerService.stopEvent.emit();
+        this.started = false;
     };
     WebWorkerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -698,9 +733,75 @@ var WebWorkerComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./web-worker.component.html */ "./src/app/component/page/web-worker/web-worker.component.html"),
             styles: [__webpack_require__(/*! ./web-worker.component.css */ "./src/app/component/page/web-worker/web-worker.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_service_web_worker_service__WEBPACK_IMPORTED_MODULE_2__["WebWorkerService"]])
     ], WebWorkerComponent);
     return WebWorkerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/web-worker.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/service/web-worker.service.ts ***!
+  \***********************************************/
+/*! exports provided: WebWorkerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebWorkerService", function() { return WebWorkerService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var WebWorkerService = /** @class */ (function () {
+    function WebWorkerService() {
+        this.startEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.stopEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    WebWorkerService.prototype.start = function () {
+        this.startEvent.emit();
+    };
+    WebWorkerService.prototype.stop = function () {
+        this.stopEvent.emit();
+    };
+    WebWorkerService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], WebWorkerService);
+    return WebWorkerService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/tools/array.utils.ts":
+/*!**************************************!*\
+  !*** ./src/app/tools/array.utils.ts ***!
+  \**************************************/
+/*! exports provided: ArrayUtils */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArrayUtils", function() { return ArrayUtils; });
+var ArrayUtils = /** @class */ (function () {
+    function ArrayUtils() {
+    }
+    ArrayUtils.arrayFor = function (nb) {
+        return new Array(nb);
+    };
+    return ArrayUtils;
 }());
 
 

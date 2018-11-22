@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import {Worker1InApi} from '../../../../../webworker/api/worker1-in.api';
 import {Worker1OutApi} from '../../../../../webworker/api/worker1-out.api';
+import {WebWorkerService} from '../../../service/web-worker.service';
 
 @Component({
   selector: 'app-count-with-ww',
@@ -8,10 +9,13 @@ import {Worker1OutApi} from '../../../../../webworker/api/worker1-out.api';
   styleUrls: ['./count-with-ww.component.css']
 })
 export class CountWithWwComponent implements OnInit, OnDestroy {
+
   public currentNb = 0;
   private myWorker: Worker;
 
-  constructor() {
+  constructor(
+    private webWorkerService: WebWorkerService,
+  ) {
   }
 
   public ngOnInit() {
@@ -19,6 +23,10 @@ export class CountWithWwComponent implements OnInit, OnDestroy {
     // Chargement du worker
     this.myWorker = new Worker('./assets/worker1.js');
     this.myWorker.onmessage = this.onWorker1Message.bind(this);
+
+    // Abonnement aux evenements
+    this.webWorkerService.startEvent.subscribe(() => this.startWebWorker());
+    this.webWorkerService.stopEvent.subscribe(() => this.stopWebWorker());
 
   }
 

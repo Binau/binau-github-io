@@ -13,37 +13,34 @@
     </app-msg-panel>
   </div>
 
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
-  <app-count-with-ww></app-count-with-ww>
+<div class='start-wrapper'>
+  <button  class='start-btn' *ngIf='!started'
+          (click)='start()' type='button'>
+    Start
+  </button>
+  <button class='stop-btn' *ngIf='started'
+          (click)='stop()' type='button'>
+    Stop
+  </button>
 
-  <!--
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
-  <app-count-no-ww></app-count-no-ww>
--->
+  <label class='start-lbl' >
+    <input class='start-input'  type='number' [(ngModel)]='nbCount'/>
+  </label>
+</div>
+
+  <div class='count-ww-wrapper'>
+    <div class='count-ww-label'>Avec webworker</div>
+    <app-count-with-ww *ngFor='let loop of loopCount'
+                       class='count-ww'
+    ></app-count-with-ww>
+  </div>
+
+  <div class='count-nw-wrapper'>
+    <div class='count-nw-label'>Sans webworker</div>
+    <app-count-no-ww *ngFor='let loop of loopCount'
+                     class='count-nw'
+    ></app-count-no-ww>
+  </div>
 
 </div>
 
