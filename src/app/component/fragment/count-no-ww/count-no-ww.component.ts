@@ -40,7 +40,6 @@ export class CountNoWwComponent implements OnInit {
   }
 
   private doCount() {
-    console.log('.');
     this.countNb++;
     this.currentImmediate = setTimeout(this.doCount.bind(this), 0);
   }

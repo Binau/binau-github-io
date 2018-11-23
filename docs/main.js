@@ -218,7 +218,6 @@ var CountNoWwComponent = /** @class */ (function () {
         this.currentImmediate = null;
     };
     CountNoWwComponent.prototype.doCount = function () {
-        console.log('.');
         this.countNb++;
         this.currentImmediate = setTimeout(this.doCount.bind(this), 0);
     };
