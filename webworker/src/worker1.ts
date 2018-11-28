@@ -11,9 +11,10 @@ onmessage = function (e) {
     currentCalc.start();
   } else if (params.stop) {
     currentCalc.stop();
+  } else if (params.reset) {
+    currentCalc.countNb = 0;
   }
 };
-
 
 setInterval(() => {
 
@@ -22,6 +23,6 @@ setInterval(() => {
   };
 
   postMessage(out);
-}, 100);
+}, 200);
 
 

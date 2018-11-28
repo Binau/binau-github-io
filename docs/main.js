@@ -93,12 +93,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_fragment_count_no_ww_count_no_ww_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./component/fragment/count-no-ww/count-no-ww.component */ "./src/app/component/fragment/count-no-ww/count-no-ww.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _service_web_worker_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./service/web-worker.service */ "./src/app/service/web-worker.service.ts");
+/* harmony import */ var _component_fragment_debug_debug_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./component/fragment/debug/debug.component */ "./src/app/component/fragment/debug/debug.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -127,7 +129,8 @@ var AppModule = /** @class */ (function () {
                 _component_page_web_worker_web_worker_component__WEBPACK_IMPORTED_MODULE_7__["WebWorkerComponent"],
                 _component_fragment_msg_panel_msg_panel_component__WEBPACK_IMPORTED_MODULE_8__["MsgPanelComponent"],
                 _component_fragment_count_with_ww_count_with_ww_component__WEBPACK_IMPORTED_MODULE_9__["CountWithWwComponent"],
-                _component_fragment_count_no_ww_count_no_ww_component__WEBPACK_IMPORTED_MODULE_10__["CountNoWwComponent"]
+                _component_fragment_count_no_ww_count_no_ww_component__WEBPACK_IMPORTED_MODULE_10__["CountNoWwComponent"],
+                _component_fragment_debug_debug_component__WEBPACK_IMPORTED_MODULE_13__["DebugComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -200,27 +203,41 @@ var CountNoWwComponent = /** @class */ (function () {
     }
     CountNoWwComponent.prototype.ngOnInit = function () {
         var _this = this;
-        setInterval(function () {
+        this.currentInterval = setInterval(function () {
             _this.currentNb = _this.countNb;
-        }, 100);
+        }, 200);
         // Abonnement aux evenements
         this.webWorkerService.startEvent.subscribe(function () { return _this.startWebWorker(); });
         this.webWorkerService.stopEvent.subscribe(function () { return _this.stopWebWorker(); });
+        this.webWorkerService.resetEvent.subscribe(function () { return _this.resetWebWorker(); });
+    };
+    CountNoWwComponent.prototype.ngOnDestroy = function () {
+        if (this.currentInterval)
+            clearInterval(this.currentInterval);
     };
     CountNoWwComponent.prototype.startWebWorker = function () {
-        if (this.currentImmediate)
-            this.stopWebWorker();
-        this.countNb = 0;
-        this.doCount();
+        if (this.enabled) {
+            if (this.currentImmediate)
+                this.stopWebWorker();
+            this.countNb = 0;
+            this.doCount();
+        }
     };
     CountNoWwComponent.prototype.stopWebWorker = function () {
         clearTimeout(this.currentImmediate);
         this.currentImmediate = null;
     };
+    CountNoWwComponent.prototype.resetWebWorker = function () {
+        this.countNb = 0;
+    };
     CountNoWwComponent.prototype.doCount = function () {
         this.countNb++;
         this.currentImmediate = setTimeout(this.doCount.bind(this), 0);
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], CountNoWwComponent.prototype, "enabled", void 0);
     CountNoWwComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-count-no-ww',
@@ -294,19 +311,29 @@ var CountWithWwComponent = /** @class */ (function () {
         // Abonnement aux evenements
         this.webWorkerService.startEvent.subscribe(function () { return _this.startWebWorker(); });
         this.webWorkerService.stopEvent.subscribe(function () { return _this.stopWebWorker(); });
+        this.webWorkerService.resetEvent.subscribe(function () { return _this.resetWebWorker(); });
     };
     CountWithWwComponent.prototype.ngOnDestroy = function () {
         if (this.myWorker)
             this.myWorker.terminate();
+        if (this.currentInterval)
+            clearInterval(this.currentInterval);
     };
     CountWithWwComponent.prototype.startWebWorker = function () {
-        this.postWorker1({
-            start: true
-        });
+        if (this.enabled) {
+            this.postWorker1({
+                start: true
+            });
+        }
     };
     CountWithWwComponent.prototype.stopWebWorker = function () {
         this.postWorker1({
             stop: true
+        });
+    };
+    CountWithWwComponent.prototype.resetWebWorker = function () {
+        this.postWorker1({
+            reset: true
         });
     };
     CountWithWwComponent.prototype.postWorker1 = function (bean) {
@@ -317,6 +344,10 @@ var CountWithWwComponent = /** @class */ (function () {
         var data = event.data;
         this.currentNb = data.currentNb;
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], CountWithWwComponent.prototype, "enabled", void 0);
     CountWithWwComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-count-with-ww',
@@ -326,6 +357,77 @@ var CountWithWwComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_service_web_worker_service__WEBPACK_IMPORTED_MODULE_1__["WebWorkerService"]])
     ], CountWithWwComponent);
     return CountWithWwComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/debug/debug.component.css":
+/*!**************************************************************!*\
+  !*** ./src/app/component/fragment/debug/debug.component.css ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".wrapper {\r\n  display: block;\r\n  margin: 20px;\r\n  padding: 20px;\r\n  background-color: lightskyblue;\r\n  border: 1px solid darkred;\r\n  border-radius: 4px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L2ZyYWdtZW50L2RlYnVnL2RlYnVnLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0VBQ2YsYUFBYTtFQUNiLGNBQWM7RUFDZCwrQkFBK0I7RUFDL0IsMEJBQTBCO0VBQzFCLG1CQUFtQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9mcmFnbWVudC9kZWJ1Zy9kZWJ1Zy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndyYXBwZXIge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIG1hcmdpbjogMjBweDtcclxuICBwYWRkaW5nOiAyMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0c2t5Ymx1ZTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBkYXJrcmVkO1xyXG4gIGJvcmRlci1yYWRpdXM6IDRweDtcclxufVxyXG4iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/debug/debug.component.html":
+/*!***************************************************************!*\
+  !*** ./src/app/component/fragment/debug/debug.component.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class='wrapper'>\n  <h1>{{label ? label : debugObj.constructor.name}}</h1>\n  <pre *ngIf='debugObj != null'>{{ debugObj | json}}</pre>\n  <pre *ngIf='!debugObj == null'>null</pre>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/component/fragment/debug/debug.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/component/fragment/debug/debug.component.ts ***!
+  \*************************************************************/
+/*! exports provided: DebugComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DebugComponent", function() { return DebugComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DebugComponent = /** @class */ (function () {
+    function DebugComponent() {
+    }
+    DebugComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], DebugComponent.prototype, "debugObj", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], DebugComponent.prototype, "label", void 0);
+    DebugComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-debug',
+            template: __webpack_require__(/*! ./debug.component.html */ "./src/app/component/fragment/debug/debug.component.html"),
+            styles: [__webpack_require__(/*! ./debug.component.css */ "./src/app/component/fragment/debug/debug.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DebugComponent);
+    return DebugComponent;
 }());
 
 
@@ -491,7 +593,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  accueil works!\n</p>\n"
+module.exports = "<p>\n  accueil\n</p>\n"
 
 /***/ }),
 
@@ -543,7 +645,7 @@ var AccueilComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.content {\r\n  padding: 10px 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2UvYXBwL2FwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLG1CQUFtQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9wYWdlL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uY29udGVudCB7XHJcbiAgcGFkZGluZzogMTBweCA1MHB4O1xyXG59XHJcbiJdfQ== */"
+module.exports = "\r\n.content {\r\n  padding: 50px 50px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2UvYXBwL2FwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLG1CQUFtQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9wYWdlL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uY29udGVudCB7XHJcbiAgcGFkZGluZzogNTBweCA1MHB4O1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -666,7 +768,7 @@ var MultiScreenComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.start-wrapper {\r\n\r\n}\r\n\r\n.start-btn {\r\n  padding: 10px 20px;\r\n}\r\n\r\n.stop-btn {\r\n  padding: 10px 20px;\r\n}\r\n\r\n.start-lbl {\r\n\r\n}\r\n\r\n.start-input {\r\n  padding: 10px;\r\n}\r\n\r\n.count-ww-wrapper {\r\n  display: inline-block;\r\n  margin: 20px 0 0 0;\r\n  border: 2px grey solid;\r\n}\r\n\r\n.count-ww-label {\r\n  padding: 20px;\r\n  background-color: rgb(22.35%, 52.94%, 87.45%);\r\n  border-bottom: 2px grey solid;\r\n}\r\n\r\n.count-ww {\r\n  display: block;\r\n  text-align: center;\r\n  padding: 10px;\r\n  background-color: rgb(51.37%, 81.57%, 94.90%);\r\n}\r\n\r\n.count-nw-wrapper {\r\n  display: inline-block;\r\n  margin: 20px 0 0 20px;\r\n  border: 2px grey solid;\r\n}\r\n\r\n.count-nw-label {\r\n  padding: 20px;\r\n  background-color: rgb(22.35%, 52.94%, 87.45%);\r\n  border-bottom: 2px grey solid;\r\n}\r\n\r\n.count-nw {\r\n  display: block;\r\n  text-align: center;\r\n  padding: 10px;\r\n  background-color: rgb(51.37%, 81.57%, 94.90%);\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBOztDQUVDOztBQUVEO0VBQ0UsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UsbUJBQW1CO0NBQ3BCOztBQUVEOztDQUVDOztBQUVEO0VBQ0UsY0FBYztDQUNmOztBQUdEO0VBQ0Usc0JBQXNCO0VBQ3RCLG1CQUFtQjtFQUNuQix1QkFBdUI7Q0FDeEI7O0FBRUQ7RUFDRSxjQUFjO0VBQ2QsOENBQThDO0VBQzlDLDhCQUE4QjtDQUMvQjs7QUFFRDtFQUNFLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsY0FBYztFQUNkLDhDQUE4QztDQUMvQzs7QUFFRDtFQUNFLHNCQUFzQjtFQUN0QixzQkFBc0I7RUFDdEIsdUJBQXVCO0NBQ3hCOztBQUVEO0VBQ0UsY0FBYztFQUNkLDhDQUE4QztFQUM5Qyw4QkFBOEI7Q0FDL0I7O0FBRUQ7RUFDRSxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLGNBQWM7RUFDZCw4Q0FBOEM7Q0FDL0MiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnQvcGFnZS93ZWItd29ya2VyL3dlYi13b3JrZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uc3RhcnQtd3JhcHBlciB7XHJcblxyXG59XHJcblxyXG4uc3RhcnQtYnRuIHtcclxuICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbn1cclxuXHJcbi5zdG9wLWJ0biB7XHJcbiAgcGFkZGluZzogMTBweCAyMHB4O1xyXG59XHJcblxyXG4uc3RhcnQtbGJsIHtcclxuXHJcbn1cclxuXHJcbi5zdGFydC1pbnB1dCB7XHJcbiAgcGFkZGluZzogMTBweDtcclxufVxyXG5cclxuXHJcbi5jb3VudC13dy13cmFwcGVyIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgbWFyZ2luOiAyMHB4IDAgMCAwO1xyXG4gIGJvcmRlcjogMnB4IGdyZXkgc29saWQ7XHJcbn1cclxuXHJcbi5jb3VudC13dy1sYWJlbCB7XHJcbiAgcGFkZGluZzogMjBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjIuMzUlLCA1Mi45NCUsIDg3LjQ1JSk7XHJcbiAgYm9yZGVyLWJvdHRvbTogMnB4IGdyZXkgc29saWQ7XHJcbn1cclxuXHJcbi5jb3VudC13dyB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIHBhZGRpbmc6IDEwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDUxLjM3JSwgODEuNTclLCA5NC45MCUpO1xyXG59XHJcblxyXG4uY291bnQtbnctd3JhcHBlciB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIG1hcmdpbjogMjBweCAwIDAgMjBweDtcclxuICBib3JkZXI6IDJweCBncmV5IHNvbGlkO1xyXG59XHJcblxyXG4uY291bnQtbnctbGFiZWwge1xyXG4gIHBhZGRpbmc6IDIwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyLjM1JSwgNTIuOTQlLCA4Ny40NSUpO1xyXG4gIGJvcmRlci1ib3R0b206IDJweCBncmV5IHNvbGlkO1xyXG59XHJcblxyXG4uY291bnQtbncge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYig1MS4zNyUsIDgxLjU3JSwgOTQuOTAlKTtcclxufVxyXG5cclxuIl19 */"
+module.exports = "\r\n.wrapper {\r\n}\r\n.start-bloc {\r\n  outline: 1px black solid;\r\n}\r\n.start-btn {\r\n  width: 120px;\r\n  padding: 10px 20px;\r\n}\r\n.stop-btn {\r\n  width: 120px;\r\n  padding: 10px 20px;\r\n}\r\n.reset-btn {\r\n  width: 120px;\r\n  padding: 10px 20px;\r\n}\r\n.start-lbl {\r\n}\r\n.start-input {\r\n  width: 100px;\r\n  padding: 10px;\r\n}\r\n.count-ww-wrapper {\r\n  width: 160px;\r\n  display: inline-block;\r\n  margin: 20px 0 0 0;\r\n  border: 2px grey solid;\r\n}\r\n.count-ww-label {\r\n  padding: 20px;\r\n  background-color: rgb(22.35%, 52.94%, 87.45%);\r\n  border-bottom: 2px dimgray solid;\r\n  cursor: pointer;\r\n  text-align: center;\r\n}\r\n.count-ww-label:hover {\r\n  outline: 2px solid black;\r\n}\r\n.count-ww-label.disabled {\r\n  background-color: rgb(42.35%, 52.94%, 67.45%);\r\n}\r\n.count-ww {\r\n  display: block;\r\n  text-align: center;\r\n  padding: 10px;\r\n  background-color: rgb(51.37%, 81.57%, 94.90%);\r\n}\r\n.count-ww.disabled {\r\n  background-color: rgb(71.37%, 63.57%, 70.90%);\r\n}\r\n.count-nw-wrapper {\r\n  width: 160px;\r\n  display: inline-block;\r\n  margin: 20px 0 0 20px;\r\n  border: 2px grey solid;\r\n}\r\n.count-nw-label {\r\n  padding: 20px;\r\n  background-color: rgb(22.35%, 52.94%, 87.45%);\r\n  border-bottom: 2px grey solid;\r\n  cursor: pointer;\r\n  text-align: center;\r\n}\r\n.count-nw-label:hover {\r\n  outline: 2px solid black;\r\n}\r\n.count-nw-label.disabled {\r\n  background-color: rgb(42.35%, 52.94%, 67.45%);\r\n}\r\n.count-nw {\r\n  display: block;\r\n  text-align: center;\r\n  padding: 10px;\r\n  background-color: rgb(51.37%, 81.57%, 94.90%);\r\n}\r\n.count-nw.disabled {\r\n  background-color: rgb(71.37%, 63.57%, 70.90%);\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L3BhZ2Uvd2ViLXdvcmtlci93ZWItd29ya2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0NBQ0M7QUFDRDtFQUNFLHlCQUF5QjtDQUMxQjtBQUVEO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtDQUNwQjtBQUVEO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtDQUNwQjtBQUVEO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtDQUNwQjtBQUVEO0NBQ0M7QUFFRDtFQUNFLGFBQWE7RUFDYixjQUFjO0NBQ2Y7QUFHRDtFQUNFLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtDQUN4QjtBQUVEO0VBQ0UsY0FBYztFQUNkLDhDQUE4QztFQUM5QyxpQ0FBaUM7RUFDakMsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtDQUNwQjtBQUVEO0VBQ0UseUJBQXlCO0NBQzFCO0FBRUQ7RUFDRSw4Q0FBOEM7Q0FDL0M7QUFFRDtFQUNFLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsY0FBYztFQUNkLDhDQUE4QztDQUMvQztBQUVEO0VBQ0UsOENBQThDO0NBQy9DO0FBRUQ7RUFDRSxhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLHNCQUFzQjtFQUN0Qix1QkFBdUI7Q0FDeEI7QUFFRDtFQUNFLGNBQWM7RUFDZCw4Q0FBOEM7RUFDOUMsOEJBQThCO0VBQzlCLGdCQUFnQjtFQUNoQixtQkFBbUI7Q0FDcEI7QUFFRDtFQUNFLHlCQUF5QjtDQUMxQjtBQUVEO0VBQ0UsOENBQThDO0NBQy9DO0FBRUQ7RUFDRSxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLGNBQWM7RUFDZCw4Q0FBOEM7Q0FDL0M7QUFFRDtFQUNFLDhDQUE4QztDQUMvQyIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9wYWdlL3dlYi13b3JrZXIvd2ViLXdvcmtlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi53cmFwcGVyIHtcclxufVxyXG4uc3RhcnQtYmxvYyB7XHJcbiAgb3V0bGluZTogMXB4IGJsYWNrIHNvbGlkO1xyXG59XHJcblxyXG4uc3RhcnQtYnRuIHtcclxuICB3aWR0aDogMTIwcHg7XHJcbiAgcGFkZGluZzogMTBweCAyMHB4O1xyXG59XHJcblxyXG4uc3RvcC1idG4ge1xyXG4gIHdpZHRoOiAxMjBweDtcclxuICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbn1cclxuXHJcbi5yZXNldC1idG4ge1xyXG4gIHdpZHRoOiAxMjBweDtcclxuICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbn1cclxuXHJcbi5zdGFydC1sYmwge1xyXG59XHJcblxyXG4uc3RhcnQtaW5wdXQge1xyXG4gIHdpZHRoOiAxMDBweDtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG59XHJcblxyXG5cclxuLmNvdW50LXd3LXdyYXBwZXIge1xyXG4gIHdpZHRoOiAxNjBweDtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgbWFyZ2luOiAyMHB4IDAgMCAwO1xyXG4gIGJvcmRlcjogMnB4IGdyZXkgc29saWQ7XHJcbn1cclxuXHJcbi5jb3VudC13dy1sYWJlbCB7XHJcbiAgcGFkZGluZzogMjBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjIuMzUlLCA1Mi45NCUsIDg3LjQ1JSk7XHJcbiAgYm9yZGVyLWJvdHRvbTogMnB4IGRpbWdyYXkgc29saWQ7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmNvdW50LXd3LWxhYmVsOmhvdmVyIHtcclxuICBvdXRsaW5lOiAycHggc29saWQgYmxhY2s7XHJcbn1cclxuXHJcbi5jb3VudC13dy1sYWJlbC5kaXNhYmxlZCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDQyLjM1JSwgNTIuOTQlLCA2Ny40NSUpO1xyXG59XHJcblxyXG4uY291bnQtd3cge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYig1MS4zNyUsIDgxLjU3JSwgOTQuOTAlKTtcclxufVxyXG5cclxuLmNvdW50LXd3LmRpc2FibGVkIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoNzEuMzclLCA2My41NyUsIDcwLjkwJSk7XHJcbn1cclxuXHJcbi5jb3VudC1udy13cmFwcGVyIHtcclxuICB3aWR0aDogMTYwcHg7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIG1hcmdpbjogMjBweCAwIDAgMjBweDtcclxuICBib3JkZXI6IDJweCBncmV5IHNvbGlkO1xyXG59XHJcblxyXG4uY291bnQtbnctbGFiZWwge1xyXG4gIHBhZGRpbmc6IDIwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyLjM1JSwgNTIuOTQlLCA4Ny40NSUpO1xyXG4gIGJvcmRlci1ib3R0b206IDJweCBncmV5IHNvbGlkO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5jb3VudC1udy1sYWJlbDpob3ZlciB7XHJcbiAgb3V0bGluZTogMnB4IHNvbGlkIGJsYWNrO1xyXG59XHJcblxyXG4uY291bnQtbnctbGFiZWwuZGlzYWJsZWQge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYig0Mi4zNSUsIDUyLjk0JSwgNjcuNDUlKTtcclxufVxyXG5cclxuLmNvdW50LW53IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgcGFkZGluZzogMTBweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoNTEuMzclLCA4MS41NyUsIDk0LjkwJSk7XHJcbn1cclxuXHJcbi5jb3VudC1udy5kaXNhYmxlZCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDcxLjM3JSwgNjMuNTclLCA3MC45MCUpO1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -677,7 +779,7 @@ module.exports = "\r\n.start-wrapper {\r\n\r\n}\r\n\r\n.start-btn {\r\n  padding
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n<div class='start-wrapper'>\n  <button  class='start-btn' *ngIf='!started'\n          (click)='start()' type='button'>\n    Start\n  </button>\n  <button class='stop-btn' *ngIf='started'\n          (click)='stop()' type='button'>\n    Stop\n  </button>\n\n  <label class='start-lbl' >\n    <input class='start-input'  type='number' [(ngModel)]='nbCount'/>\n  </label>\n</div>\n\n  <div class='count-ww-wrapper'>\n    <div class='count-ww-label'>Avec webworker</div>\n    <app-count-with-ww *ngFor='let loop of loopCount'\n                       class='count-ww'\n    ></app-count-with-ww>\n  </div>\n\n  <div class='count-nw-wrapper'>\n    <div class='count-nw-label'>Sans webworker</div>\n    <app-count-no-ww *ngFor='let loop of loopCount'\n                     class='count-nw'\n    ></app-count-no-ww>\n  </div>\n\n</div>\n\n"
+module.exports = "<div class='wrapper'>\n\n  <!-- Message si les webworker ne sont pas accessibles -->\n  <div *ngIf='erreur' class='error-wrapper'>\n    <app-msg-panel>\n      {{erreur}}\n      <div><a class='link' href='https://www.google.com/chrome/' target='_blank'>\n        Chrome : https://www.google.com/chrome/\n      </a></div>\n      <div><a class='link' href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>\n        Firefox : https://www.mozilla.org/fr/firefox/new/\n      </a></div>\n    </app-msg-panel>\n  </div>\n\n  <div class='start-wrapper'>\n    <span class='start-bloc'>\n      <button class='start-btn' *ngIf='!started'\n              (click)='start()' type='button'>\n        Start\n      </button>\n      <button class='stop-btn' *ngIf='started'\n              (click)='stop()' type='button'>\n        Stop\n      </button>\n      <button class='reset-btn'\n              (click)='reset()' type='button'>\n        Reset\n      </button>\n\n      <label class='start-lbl'>\n        <input class='start-input' type='number' min='1' max='500'\n               [(ngModel)]='nbCount'/>\n      </label>\n    </span>\n  </div>\n\n  <div class='count-ww-wrapper'>\n    <div class='count-ww-label'\n         [ngClass]='{\"disabled\":!enabledWw}'\n         (click)='switchEnabledWw()'\n    >Avec webworker\n    </div>\n    <app-count-with-ww *ngFor='let loop of loopCount'\n                       class='count-ww'\n                       [ngClass]='{\"disabled\":!enabledWw}'\n                       [enabled]='enabledWw'\n    ></app-count-with-ww>\n  </div>\n\n  <div class='count-nw-wrapper'>\n    <div class='count-nw-label'\n         [ngClass]='{\"disabled\":!enabledSw}'\n         (click)='switchEnabledSw()'>Sans webworker\n    </div>\n    <app-count-no-ww *ngFor='let loop of loopCount'\n                     class='count-nw'\n                     [ngClass]='{\"disabled\":!enabledSw}'\n                     [enabled]='enabledSw'\n    ></app-count-no-ww>\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
@@ -709,8 +811,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var WebWorkerComponent = /** @class */ (function () {
     function WebWorkerComponent(webWorkerService) {
         this.webWorkerService = webWorkerService;
-        this.nbCount = 20;
+        this.nbCount = 1;
         this.started = false;
+        this.enabledWw = true;
+        this.enabledSw = true;
     }
     Object.defineProperty(WebWorkerComponent.prototype, "loopCount", {
         get: function () {
@@ -732,6 +836,15 @@ var WebWorkerComponent = /** @class */ (function () {
     WebWorkerComponent.prototype.stop = function () {
         this.webWorkerService.stopEvent.emit();
         this.started = false;
+    };
+    WebWorkerComponent.prototype.reset = function () {
+        this.webWorkerService.resetEvent.emit();
+    };
+    WebWorkerComponent.prototype.switchEnabledWw = function () {
+        this.enabledWw = !this.enabledWw;
+    };
+    WebWorkerComponent.prototype.switchEnabledSw = function () {
+        this.enabledSw = !this.enabledSw;
     };
     WebWorkerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -773,12 +886,16 @@ var WebWorkerService = /** @class */ (function () {
     function WebWorkerService() {
         this.startEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.stopEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.resetEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     WebWorkerService.prototype.start = function () {
         this.startEvent.emit();
     };
     WebWorkerService.prototype.stop = function () {
         this.stopEvent.emit();
+    };
+    WebWorkerService.prototype.reset = function () {
+        this.resetEvent.emit();
     };
     WebWorkerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),

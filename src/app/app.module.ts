@@ -13,6 +13,7 @@ import { CountNoWwComponent } from './component/fragment/count-no-ww/count-no-ww
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {WebWorkerService} from './service/web-worker.service';
+import { DebugComponent } from './component/fragment/debug/debug.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {WebWorkerService} from './service/web-worker.service';
     WebWorkerComponent,
     MsgPanelComponent,
     CountWithWwComponent,
-    CountNoWwComponent
+    CountNoWwComponent,
+    DebugComponent
   ],
   imports: [
     BrowserModule,

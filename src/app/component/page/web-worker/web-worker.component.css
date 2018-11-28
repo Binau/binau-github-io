@@ -1,26 +1,36 @@
 
-.start-wrapper {
-
+.wrapper {
+}
+.start-bloc {
+  outline: 1px black solid;
 }
 
 .start-btn {
+  width: 120px;
   padding: 10px 20px;
 }
 
 .stop-btn {
+  width: 120px;
+  padding: 10px 20px;
+}
+
+.reset-btn {
+  width: 120px;
   padding: 10px 20px;
 }
 
 .start-lbl {
-
 }
 
 .start-input {
+  width: 100px;
   padding: 10px;
 }
 
 
 .count-ww-wrapper {
+  width: 160px;
   display: inline-block;
   margin: 20px 0 0 0;
   border: 2px grey solid;
@@ -29,7 +39,17 @@
 .count-ww-label {
   padding: 20px;
   background-color: rgb(22.35%, 52.94%, 87.45%);
-  border-bottom: 2px grey solid;
+  border-bottom: 2px dimgray solid;
+  cursor: pointer;
+  text-align: center;
+}
+
+.count-ww-label:hover {
+  outline: 2px solid black;
+}
+
+.count-ww-label.disabled {
+  background-color: rgb(42.35%, 52.94%, 67.45%);
 }
 
 .count-ww {
@@ -39,7 +59,12 @@
   background-color: rgb(51.37%, 81.57%, 94.90%);
 }
 
+.count-ww.disabled {
+  background-color: rgb(71.37%, 63.57%, 70.90%);
+}
+
 .count-nw-wrapper {
+  width: 160px;
   display: inline-block;
   margin: 20px 0 0 20px;
   border: 2px grey solid;
@@ -49,6 +74,16 @@
   padding: 20px;
   background-color: rgb(22.35%, 52.94%, 87.45%);
   border-bottom: 2px grey solid;
+  cursor: pointer;
+  text-align: center;
+}
+
+.count-nw-label:hover {
+  outline: 2px solid black;
+}
+
+.count-nw-label.disabled {
+  background-color: rgb(42.35%, 52.94%, 67.45%);
 }
 
 .count-nw {
@@ -58,3 +93,6 @@
   background-color: rgb(51.37%, 81.57%, 94.90%);
 }
 
+.count-nw.disabled {
+  background-color: rgb(71.37%, 63.57%, 70.90%);
+}

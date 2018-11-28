@@ -1,0 +1,6 @@
+
+<div class='wrapper'>
+  <h1>{{label ? label : debugObj.constructor.name}}</h1>
+  <pre *ngIf='debugObj != null'>{{ debugObj | json}}</pre>
+  <pre *ngIf='!debugObj == null'>null</pre>
+</div>

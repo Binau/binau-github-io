@@ -10,8 +10,10 @@ import {WebWorkerService} from '../../../service/web-worker.service';
 })
 export class CountWithWwComponent implements OnInit, OnDestroy {
 
+  @Input() enabled: boolean;
   public currentNb = 0;
   private myWorker: Worker;
+  private currentInterval;
 
   constructor(
     private webWorkerService: WebWorkerService,
@@ -27,24 +29,32 @@ export class CountWithWwComponent implements OnInit, OnDestroy {
     // Abonnement aux evenements
     this.webWorkerService.startEvent.subscribe(() => this.startWebWorker());
     this.webWorkerService.stopEvent.subscribe(() => this.stopWebWorker());
+    this.webWorkerService.resetEvent.subscribe(() => this.resetWebWorker());
 
   }
 
   public ngOnDestroy(): void {
     if (this.myWorker) this.myWorker.terminate();
-
+    if (this.currentInterval) clearInterval(this.currentInterval);
   }
 
-
   private startWebWorker() {
-    this.postWorker1({
-      start: true
-    });
+    if (this.enabled) {
+      this.postWorker1({
+        start: true
+      });
+    }
   }
 
   private stopWebWorker() {
     this.postWorker1({
       stop: true
+    });
+  }
+
+  private resetWebWorker() {
+    this.postWorker1({
+      reset: true
     });
   }
 

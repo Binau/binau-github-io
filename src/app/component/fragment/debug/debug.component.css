@@ -1,0 +1,8 @@
+.wrapper {
+  display: block;
+  margin: 20px;
+  padding: 20px;
+  background-color: lightskyblue;
+  border: 1px solid darkred;
+  border-radius: 4px;
+}
