@@ -6,7 +6,7 @@
     "start": "ng serve --deploy-url /binau-github-io/ --base-href /binau-github-io/",
     "build": "ng build --deploy-url /binau-github-io/ --base-href /binau-github-io/",
     "build-worker1": "webpack --config webworker/webpack.config.js --watch",
-    "build-prod": "npm run build-worker1 && npm run build",
+    "build-prod": "webpack --config webworker/webpack.config.js && npm run build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
